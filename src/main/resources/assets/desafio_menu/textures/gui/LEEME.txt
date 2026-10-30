@@ -1,0 +1,6 @@
+Texturas recortadas del video (calidad limitada). Puedes reemplazarlas por las originales:
+  frame.png         -> marco completo, 1280x674 (interior liso; se estira a pantalla completa)
+  tab_lore.png      -> ícono Historia   (128x128, incluye el recuadro gris)
+  tab_quests.png    -> ícono Misiones   (128x128)
+  tab_guide.png     -> ícono Guía       (128x128)
+  tab_bestiary.png  -> ícono Bestiario  (128x128)

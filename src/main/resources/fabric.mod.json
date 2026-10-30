@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "desafio_menu",
+  "version": "${version}",
+  "name": "Desafío Menu",
+  "description": "Menú de misiones, guía, historia y bestiario con modo editor.",
+  "authors": ["Tú"],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.desafio.menu.DesafioMenu"],
+    "client": ["com.desafio.menu.client.DesafioMenuClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
