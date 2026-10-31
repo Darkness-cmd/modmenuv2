@@ -1,0 +1,17 @@
+{
+  "type": "limbo:limbo",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "limbo:limbo",
+      "lakes": false,
+      "features": false,
+      "structure_overrides": [],
+      "layers": [
+        { "block": "minecraft:bedrock", "height": 1 },
+        { "block": "minecraft:polished_blackstone", "height": 3 },
+        { "block": "minecraft:water", "height": 16 }
+      ]
+    }
+  }
+}

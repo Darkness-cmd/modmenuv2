@@ -1,11 +1,14 @@
 plugins {
-    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'fabric-loom' version '1.8-SNAPSHOT'
     id 'maven-publish'
 }
 
 version = project.mod_version
 group = project.maven_group
-base { archivesName = project.archives_base_name }
+
+base {
+    archivesName = project.archives_base_name
+}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -14,12 +17,9 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
-processResources {
-    inputs.property "version", project.version
-    filesMatching("fabric.mod.json") { expand "version": project.version }
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
 }
-
-tasks.withType(JavaCompile).configureEach { it.options.release = 21 }
 
 java {
     withSourcesJar()

@@ -1,48 +1,26 @@
-# Desafío Menu — Fabric 1.21.1 (mappings Yarn)
-
-Menú de Misiones / Guía / Historia / Bestiario con Modo Editor, copiado del video.
-Abrir con **G** (rebindable en Controles → "Desafío"). Cerrar con **G** o **Esc**.
+# El Limbo — Fabric 1.21.1
 
 ## Compilar
-Necesitas JDK 21. Elige una opción:
+Requisitos: JDK 21.
 
-1. **Con Gradle instalado** (8.12+), dentro de esta carpeta:
-       gradle wrapper --gradle-version 8.12
-       ./gradlew build          (el .jar queda en build/libs/, usa el que NO termina en -sources)
-       ./gradlew runClient      (para probarlo en Minecraft)
-2. **Sin instalar nada**: sube la carpeta a un repositorio de GitHub; la pestaña *Actions* compila
-   y deja el .jar descargable (.github/workflows/build.yml).
-3. **IntelliJ IDEA**: abre la carpeta como proyecto Gradle e importa; ejecuta la tarea `runClient`.
+1. Entra a https://fabricmc.net/develop/template/ , elige Minecraft 1.21.1, mod id `limbo`,
+   descarga la plantilla y copia SOLO `gradlew`, `gradlew.bat` y la carpeta `gradle/` a esta carpeta
+   (o ejecuta `gradle wrapper --gradle-version 8.10` si tienes Gradle instalado).
+2. `./gradlew build`  → el .jar queda en `build/libs/limbo-1.0.0.jar`
+3. Mete el jar + Fabric API 1.21.1 en la carpeta `mods` (cliente Y servidor).
+   Para probar en desarrollo: `./gradlew runClient`.
 
-Instalación: copia el .jar a `mods/` junto con **Fabric Loader 0.16+** y **Fabric API** para 1.21.1.
-Debe estar en el cliente **y** en el servidor (si juegas en servidor).
-Si `fabric_version` ya no existe, usa la última `+1.21.1` de https://fabricmc.net/develop/.
+Si Gradle no encuentra la versión de Fabric API, cambia `fabric_version` en gradle.properties
+por la última para 1.21.1.
 
-## Paquetes
-- `com.desafio.menu`            -> DesafioMenu (ModInitializer: registra payloads, eventos, comando)
-- `...client`                   -> DesafioMenuClient (keybind G + receptor), ClientData
-- `...screen`                   -> DesafioScreen (menú), EditorScreen, EntryFormScreen, Ui, RichText
-- `...data`                     -> Content (modelo), ContentStore/ProgressStore (JSON), QuestLogic, Defaults
-- `...networking`               -> SyncPayload (S2C), EditPayload / ClaimPayload (C2S), ServerNetworking
-- `...server`                   -> QuestTracker (progreso), RecipeApplier, DesafioCommand
+## Probar rápido
+- `/give @s limbo:limbo_trident` o craftea: tridente + lingote de netherita (sale con Riptide III).
+- Pon una cama en el Nether y úsala, o rompe una cama en el Overworld → vas al Limbo.
+- `/execute in limbo:limbo run tp @s 0 41 -18` para ir directo.
+- Para regenerar las estructuras: borra la carpeta `DIM-limbo`... y `data/limbo_return.dat` del mundo.
 
-## JSON (config/desafio_menu/)
-quests.json, guide.json, lore.json, bestiary.json, recipes.json, progress.json.
-Se crean con el contenido del video la primera vez. Puedes editarlos a mano y usar `/desafio reload`.
-
-## Tipos de misión
-- obtain: cuenta ítems en el inventario (target = item id)
-- visit:  entrar a una dimensión (target = minecraft:the_nether)
-- kill:   matar entidades (target = zombie / minecraft:zombie)
-- custom: `/desafio add <jugador> <misión> <cantidad>`
-Una misión se desbloquea cuando las de `requires` están COMPLETADAS (reclamadas).
-
-## Texto resaltado
-`[[texto]]` se dibuja en azul (como "Lingotes de Hierro" en el video).
-
-## Texturas opcionales (assets/desafio_menu/textures/gui/)
-frame.png (1280x674), tab_lore.png, tab_quests.png, tab_guide.png, tab_bestiary.png (128x128).
-Sin ellas, el marco se dibuja por código y los íconos usan ítems vanilla.
-
-## Permisos del editor
-Operadores (nivel 2) o el anfitrión en un mundo local.
+## Ajustes
+- `LimboDimension`: spawn, radio y altura del agujero.
+- `LimboEvents`: DRAIN_PER_SECOND y MIN_MAX_HEALTH (agua), bypass de creativo/op.
+- `LimboManager`: RESTORE_MAX_HEALTH_ON_ESCAPE.
+- `LimboStructure`: tamaño y daño del coliseo, torres y puentes.

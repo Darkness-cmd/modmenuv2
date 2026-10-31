@@ -1,16 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "desafio_menu",
-  "version": "${version}",
-  "name": "Desafío Menu",
-  "description": "Menú de misiones, guía, historia y bestiario con modo editor.",
-  "authors": ["Tú"],
-  "license": "All-Rights-Reserved",
+  "id": "limbo",
+  "version": "1.0.0",
+  "name": "El Limbo",
+  "description": "Dimensión del Limbo con camas, agua morada y tridente de movilidad.",
   "environment": "*",
   "entrypoints": {
-    "main": ["com.desafio.menu.DesafioMenu"],
-    "client": ["com.desafio.menu.client.DesafioMenuClient"]
+    "main": ["com.example.limbo.Limbo"],
+    "client": ["com.example.limbo.client.LimboClient"]
   },
+  "mixins": [
+    { "config": "limbo.client.mixins.json", "environment": "client" }
+  ],
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "~1.21.1",
